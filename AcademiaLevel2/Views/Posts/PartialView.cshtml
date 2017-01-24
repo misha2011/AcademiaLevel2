@@ -1,0 +1,13 @@
+﻿@model AcademiaLevel2.Models.Post
+<div id="@Model.Id" class="room-comment">
+    <br />   
+    <p class="text-name"> @Model.IdUser.firstName @Model.IdUser.lastName </p>
+    <button type="submit" id="edit-@Model.Id" class="button-edit btn btn-success button">Edit</button>
+    <h6></h6> 
+    <button type="submit" id="delete-@Model.Id" class="button-del btn btn-success button">Delete</button>
+    <p class="text-date"> @Model.Date</p>
+    <center id="title-@Model.Id" class="text-title">@Model.Title</center>
+    <br />
+    <p id="description-@Model.Id" class="text-name">@Model.Description</p>
+</div>
+

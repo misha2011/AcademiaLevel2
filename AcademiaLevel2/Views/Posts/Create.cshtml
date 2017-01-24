@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AcademiaLevel2.Models.Post>
+@{
+    ViewBag.Title = "Post";
+}
+@Styles.Render("~/Content/Post/css")
+
+<div class="room">
+    <div class="room-title">
+        <p class="title">Title<p />
+        <input id="Title" class="input-title" type="text" name="Title">
+    </div>
+    <div class="room-description">
+        <p class="title">Description<p />
+        <textarea id="Description" class="input-description" type="datetime" name="Description"></textarea>
+        <button id="send" class="button-send" type="submit">
+            Send
+        </button>
+    </div>
+    <div id="addNewPost">
+
+    </div>
+        <div id="">
+
+            @foreach (var item in Model)
+            {
+                <div id="@item.Id" class="room-comment">
+                    <br />
+                    <p class="text-name"> @item.IdUser.firstName @item.IdUser.lastName </p>
+                    <button type="submit" id="edit-@item.Id" class="button-edit btn btn-success button">Edit</button>
+                    <h6></h6> 
+                    <button type="submit" id="delete-@item.Id" class="button-del btn btn-success button">Delete</button>
+                    <p class="text-date"> @item.Date</p>
+                    <center id="title-@item.Id" class="text-title">@item.Title</center>
+                    <br />
+                    <p id="description-@item.Id" class="text-name">@item.Description</p>
+                </div>
+            }
+        </div>
+        <br />
+    </div>
+
+<div class="b-popup" id="popup1" style="display:none">
+    <div class="b-popup-content">
+        <p class="title">Title<p />
+        <input id="title-edit" class="input-title" type="text" name="Title">
+        <p class="title">Description<p />
+        <textarea id="description-edit" style="width:330px;" class="input-description" type="datetime" name="Description">  </textarea>
+        <br />
+        <button id="edit" class="button-send" type="submit" style="margin-right:40px;">
+            Edit
+        </button>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

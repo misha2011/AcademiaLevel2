@@ -79,6 +79,10 @@ namespace AcademiaLevel2.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+        [Required]
+        public string firstName { get; set; }
+        [Required]
+        public string lastName { get; set; }
     }
 
     public class ResetPasswordViewModel

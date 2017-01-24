@@ -1,0 +1,17 @@
+﻿
+<div ng-repeat="p in $ctrl.servis.postResults">
+    <div class="well post" id="{{p.Id}}">
+        <h5>
+            {{p.ApplicationUserId.FirstName}} {{p.ApplicationUserId.LastName}}
+            <span class="pull-right">
+                <button ng-click="$ctrl.open()" class="btn btn-primary">Редагувати</button>
+                <button ng-click="$ctrl.deleteResults(p.Id)" class="btn btn-primary">Видалити</button>
+            </span>
+        </h5>
+        <h6>  <span class="text-left">{{p.Time | date:'medium'}} </span> </h6>
+        <div class="text-center"><h3><strong>{{p.Title}}</strong></h3></div>
+        <h6>{{p.Content}}</h6>
+
+    </div>
+    <post-loader></post-loader>
+</div>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AcademiaLevel2.Models.ApplicationUser>
+@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/Content/frends/css")
+
+<h3>All users</h3>
+@using Microsoft.AspNet.Identity;
+@foreach (var item in Model)
+{
+    if (User.Identity.GetUserId() != item.Id)
+    {
+        <div>
+            <div class="col-md-2"></div>
+            <div class="col-md-9 friend">
+                <div class="col-md-8">
+                    <h3>@item.lastName @item.firstName</h3>
+                    <h4>@item.Email</h4>
+                    <h4>@item.</h4>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-default button" disabled>Friend</button>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    }
+}
+@*<div>
+        <div class="col-md-2"></div>
+            <div class="col-md-9 friend">
+                <div class="col-md-8">
+                    <h3>misha@mail.ru</h3>
+                    <h4>misha@mail.ru</h4>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary button">Add</button>
+                </div>
+            </div>
+        <div class="col-md-1"></div>
+    </div>*@
