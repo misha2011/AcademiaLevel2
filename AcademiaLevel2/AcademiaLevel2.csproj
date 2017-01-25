@@ -1000,10 +1000,13 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\post.js" />
-    <Content Include="Scripts\Post\app.component.js" />
+    <Content Include="Scripts\Post\postComponent.js" />
+    <Content Include="Scripts\Post\postEditor.js" />
     <Content Include="Scripts\Post\app.js" />
+    <Content Include="Scripts\Post\postLoader.js" />
+    <Content Include="Scripts\Post\postService.js" />
     <Content Include="Scripts\Post\Template\editPost.html" />
-    <Content Include="Scripts\Post\app.home.js" />
+    <Content Include="Scripts\Post\postApp.js" />
     <Content Include="Scripts\Post\Template\topPost.html" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />

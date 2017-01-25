@@ -1,26 +1,34 @@
-﻿@model IEnumerable<AcademiaLevel2.Models.Post>
+﻿
+@model IEnumerable<AcademiaLevel2.Models.Post>
 @{
-    ViewBag.Title = "Post";
+    ViewBag.Title = "Пости";
 }
-@Styles.Render("~/Content/Post/css")
 
-<div class="room">
-    <div class="room-title">
-        <p class="title">Title<p />
-        <input id="Title" class="input-title" type="text" name="Title">
-    </div>
-    <div class="room-description">
-        <p class="title">Description<p />
-        <textarea id="Description" class="input-description" type="datetime" name="Description"></textarea>
-        <button id="send" class="button-send" type="submit">
-            Send
-        </button>
-    </div>
+<div class="well center-block" id="addPost">
+    <span class="pull-left">
+        <label for="title">Заголовок:</label>
+        <input type="text" class="form-control" id="title">
+    </span>
+    <span class="pull-right">
+        <label for="desc">Опис:</label>
+        <textarea class="form-control" rows="8" cols="45" id="desc"></textarea>
+        <span class="pull-right">
+            <input class="btn btn-default btn-addpost" type="submit" value="Додати пост" />
+        </span>
+    </span>
+
 </div>
-<h1>{{2+2}}</h1>
 
 @Html.Partial("IndexPartialView")
 
+<style>
+    #addPost {
+        height: 270px;
+        width: 550px;
+        border-color: #443636;
+        border-width: 1px;
+    }
+</style>
 
 
 
@@ -28,25 +36,26 @@
 
 
 
-@*<body ng-repeat="">
-    <h1>{{title}}</h1>
-    <div ng-controller="PhoneListCtrl">       
-        <h1>{{title}}</h1>
+@*<div ng-controller="DemoCtrl">
+    <input type="text"/>
+    {{posts[0].description}}
+    <ul>
+        <li ng-repeat="post in posts.data">
+            <span>{{post.Title}}</span>
+            <p>{{post.IdUser.Email}}</p>
+        </li>        
+    </ul> 
+    <p>Count: {{posts.data.length}}</p>   
+    <p>{{today | date:'dd/MM/yyyy'}}</p>
+</div>*@
 
-        <ul>
-            <li ng-repeat="post in posts.data">
-                <span>{{post.IdUser.firstName}}</span>
-                <p>
-                    {{post.Title}}<br />                    
-                    {{post.Description}}
-                </p>
-            </li>            
-        </ul>
-        <p>Кількість постів: {{posts.data.length}}</p>
-        <hr />
-        {{today | date:'dd/MM/yyyy'}}    
-    </div>
-</body>*@
+
+
+
+
+
+
+
 
 
 

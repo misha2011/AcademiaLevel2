@@ -1,9 +1,9 @@
 ﻿(function () {
-    angular.module('app.home', [])
+    angular.module('postApp', [])
         .config(['$stateProvider', function ($stateProvider) {
-            $stateProvider.state('home', {
+            $stateProvider.state('postApp', {
                 url: "/Posts",
-                template: '<home-component></home-component>',
+                template: '<post-component></post-component>',
                 data: {
                     pageTitle: 'Posts',
                 }

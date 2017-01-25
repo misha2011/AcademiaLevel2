@@ -59,10 +59,11 @@ namespace AcademiaLevel2
 
             bundles.Add(new ScriptBundle("~/Scripts/angular-app").Include(
                         "~/Scripts/Post/app.js",
-                        "~/Scripts/Post/app.home.js",
-                        "~/Scripts/Post/app.component.js",
-                        "~/Scripts/Post/app.directive.js",
-                        "~/Scripts/Post/app.services.js"
+                        "~/Scripts/Post/postApp.js",
+                        "~/Scripts/Post/postComponent.js",
+                        "~/Scripts/Post/postLoader.js",
+                        "~/Scripts/Post/postEditor.js",
+                        "~/Scripts/Post/postService.js"
                       ));
 
         }
