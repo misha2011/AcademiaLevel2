@@ -5,7 +5,6 @@
         //, $uibModal
         var vm = this;
         vm.servis = postService;
-        vm.text = "test";
         vm.getResults = function () {
             postService.getpostResults();
         };
@@ -33,12 +32,6 @@
             console.log(Id);
             postService.editPost(Id, Title, Content);
         };
-
-        
-
-
-
-
         vm.getResults();
         // vm.deleteResults();
     }

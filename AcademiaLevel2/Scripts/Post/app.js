@@ -1,7 +1,7 @@
 ﻿angular.module('app', [
     'postApp',
     'post.service',
-    'post.directive'
+    'post.directives'
 ])
 
 

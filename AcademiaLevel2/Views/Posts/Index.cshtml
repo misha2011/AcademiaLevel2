@@ -1,34 +1,15 @@
 ﻿
 @model IEnumerable<AcademiaLevel2.Models.Post>
 @{
-    ViewBag.Title = "Пости";
+    ViewBag.Title = "Posts";
 }
 
-<div class="well center-block" id="addPost">
-    <span class="pull-left">
-        <label for="title">Заголовок:</label>
-        <input type="text" class="form-control" id="title">
-    </span>
-    <span class="pull-right">
-        <label for="desc">Опис:</label>
-        <textarea class="form-control" rows="8" cols="45" id="desc"></textarea>
-        <span class="pull-right">
-            <input class="btn btn-default btn-addpost" type="submit" value="Додати пост" />
-        </span>
-    </span>
 
-</div>
-
-@Html.Partial("IndexPartialView")
-
-<style>
-    #addPost {
-        height: 270px;
-        width: 550px;
-        border-color: #443636;
-        border-width: 1px;
-    }
-</style>
+    <div class="room" id="PostContainer">
+        <post-component></post-component>
+    </div>
+ 
+  
 
 
 
@@ -36,18 +17,18 @@
 
 
 
-@*<div ng-controller="DemoCtrl">
-    <input type="text"/>
-    {{posts[0].description}}
-    <ul>
-        <li ng-repeat="post in posts.data">
-            <span>{{post.Title}}</span>
-            <p>{{post.IdUser.Email}}</p>
-        </li>        
-    </ul> 
-    <p>Count: {{posts.data.length}}</p>   
-    <p>{{today | date:'dd/MM/yyyy'}}</p>
-</div>*@
+    @*<div ng-controller="DemoCtrl">
+            <input type="text"/>
+            {{posts[0].description}}
+            <ul>
+                <li ng-repeat="post in posts.data">
+                    <span>{{post.Title}}</span>
+                    <p>{{post.IdUser.Email}}</p>
+                </li>
+            </ul>
+            <p>Count: {{posts.data.length}}</p>
+            <p>{{today | date:'dd/MM/yyyy'}}</p>
+        </div>*@
 
 
 
@@ -59,7 +40,7 @@
 
 
 
-    
+
 
 
 

@@ -1,5 +1,24 @@
-﻿
-<div ng-repeat="p in $ctrl.servis.postResults">
+﻿<br />
+<div ng-repeat="post in $ctrl.servis.postResults"> 
+    <div id="{{post.Id}}" class="room-comment">
+        <br />
+        <p class="text-name"> {{post.IdUser.firstName}} {{post.IdUser.lastName}} </p>
+        <button type="submit" id="edit-@item.Id" class="button-edit btn btn-success button">Edit</button>
+        <h6></h6>
+        <button type="submit" id="delete-@item.Id" class="button-del btn btn-success button">Delete</button>
+        <p class="text-date"> {{post.Date | date:'dd/MM/yyyy'}} </p>
+        <center id="title-@item.Id" class="text-title">{{post.Title}}</center>
+        <br />
+        <p id="description-@item.Id" class="text-name">{{post.Description}}</p>
+    </div>
+</div>
+<br />
+<post-loader></post-loader>
+
+
+
+
+<!--<div ng-repeat="p in $ctrl.servis.postResults">
     <div class="well post" id="{{p.Id}}">
         <h5>
             {{p.ApplicationUserId.FirstName}} {{p.ApplicationUserId.LastName}}
@@ -14,4 +33,4 @@
 
     </div>
     <post-loader></post-loader>
-</div>
+</div>-->

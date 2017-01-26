@@ -1,5 +1,5 @@
 ﻿(function () {
-    'use strict';
+    'use strict'; 
     function postLoader(postService) {
         return {
             restrict: 'AE',
@@ -13,11 +13,10 @@
                         }
                     }
                 };
-
             }
         };
     }
     postLoader.$inject = ['postService'];
-    angular.module('post.directive', [])
+    angular.module('post.directives', [])
     .directive('postLoader', postLoader);
 })();

@@ -48,12 +48,22 @@ namespace AcademiaLevel2.Controllers
             var Post = db.Post.Where(v => v.IdUser.Id == id)
                 .Include(u => u.IdUser);
             return View(Post);
-        }
+        }     
         public JsonResult Test()
         { 
             var results = db.Post.Include(u => u.IdUser).ToList();
 
             return new JsonResult() { Data = results, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        [HttpPost]
+        public JsonResult GetPost(int index = 0, int count = 10)
+        {           
+            var data = db.Post.Include(p => p.IdUser)
+                .OrderByDescending(p => p.Date).ToList()
+               .Skip(index * count)
+               .Take(count).ToList();
+            return new JsonResult() { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         // POST: Post/Create

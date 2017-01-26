@@ -8,17 +8,16 @@
 
         factory.getpostResults = function () {
             if (!factory.noResults)
-                return $http.post("/Posts/Test", { index: factory.skipPost, count: 10 }).then(function (data) {
-                    console.log(data);
-               ////??????     factory.postResults = data;
+                return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {
+                    console.log(data.data);                   
                     if (data.data.length === 0) {
                         factory.noResults = true;
                         return;
                     }
                     data.data.forEach(function (elem, index, array) {
-                        var time = elem.Time;
-                        var res = time.replace(/[A-z]/g, "").replace('/', "").replace("(", "").replace(")", "").replace('/', "");
-                        elem.Time = res;
+                        var date = elem.Date;
+                        var res = date.replace(/[A-z]/g, "").replace('/', "").replace("(", "").replace(")", "").replace('/', "");
+                        elem.Date = res;
                     });
                     factory.postResults.push.apply(factory.postResults, data.data);
 
@@ -45,9 +44,6 @@
 
 
     postService.$inject = ['$http'];
-    angular
-       .module('post.service', [])
+    angular.module('post.service', [])
         .factory('postService', postService);
-
-
 })();
