@@ -199,6 +199,22 @@
     <Compile Include="Migrations\201612211228438_add-Post.Designer.cs">
       <DependentUpon>201612211228438_add-Post.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701271847579_inPostChangeIntTiStringInId.cs" />
+    <Compile Include="Migrations\201701271847579_inPostChangeIntTiStringInId.Designer.cs">
+      <DependentUpon>201701271847579_inPostChangeIntTiStringInId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701271858104_inPostChangeIntTiStringInId_2.cs" />
+    <Compile Include="Migrations\201701271858104_inPostChangeIntTiStringInId_2.Designer.cs">
+      <DependentUpon>201701271858104_inPostChangeIntTiStringInId_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701271903063_inPostChangeIntTiStringInId_3.cs" />
+    <Compile Include="Migrations\201701271903063_inPostChangeIntTiStringInId_3.Designer.cs">
+      <DependentUpon>201701271903063_inPostChangeIntTiStringInId_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701272115379_save.cs" />
+    <Compile Include="Migrations\201701272115379_save.Designer.cs">
+      <DependentUpon>201701272115379_save.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Friends.cs" />
@@ -1086,6 +1102,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612211228438_add-Post.resx">
       <DependentUpon>201612211228438_add-Post.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271847579_inPostChangeIntTiStringInId.resx">
+      <DependentUpon>201701271847579_inPostChangeIntTiStringInId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271858104_inPostChangeIntTiStringInId_2.resx">
+      <DependentUpon>201701271858104_inPostChangeIntTiStringInId_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701271903063_inPostChangeIntTiStringInId_3.resx">
+      <DependentUpon>201701271903063_inPostChangeIntTiStringInId_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701272115379_save.resx">
+      <DependentUpon>201701272115379_save.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,6 +10,7 @@ namespace AcademiaLevel2.Models
     public class Friends
     {
         public int id { get; set; }
+        public string idFriends { get; set; }
         public string status { get; set; }
         public ApplicationUser userThis { get; set; }
         public ApplicationUser userAnother { get; set; }

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Linq;
+using System;
 
 namespace AcademiaLevel2.Models
 {
@@ -19,6 +20,11 @@ namespace AcademiaLevel2.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public static implicit operator ApplicationUser(string v)
+        {
+            throw new NotImplementedException();
         }
     }
 

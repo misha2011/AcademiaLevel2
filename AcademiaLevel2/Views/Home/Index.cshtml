@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AcademiaLevel2.Models.Friends>
+﻿@model IEnumerable<AcademiaLevel2.Models.FriendView>
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,60 +10,99 @@
   
 <div>
     <div class="col-md-2"></div>
-    <div class="col-md-9 friend" id="@item.id">
-        <div class="col-md-8">  
-            @if (item.userThis.Id == ViewBag.id)
-            {
-                <h3>@item.userAnother.firstName @item.userAnother.lastName</h3>
-                <h4>@item.userAnother.Email</h4>
-            }
-            else
-            {
-                <h3>@item.userThis.firstName @item.userThis.lastName</h3>
-                <h4>@item.userThis.Email</h4> 
-            }
+    <div class="col-md-9 friend" id="@item.idFriends">
+        <div class="col-md-8"> 
+            <h3>@item.idFriends</h3>
+            <h3>@item.UserThis_Id</h3>
+            <h3>Id @item.Id</h3>                
+                <h3>@item.FirstName @item.LastName</h3>
+                <h4>@item.Email</h4>
+            
         </div>
         <div class="col-md-2">
-            @if (item.status == "friend")
-            {  
-                <button type="submit" id="delete-@item.id" class="btn-delete btn btn-default button">Delete friend</button>
-            }
-            @if (item.status == "followIn")
-            {
-                if (item.userThis.Id == ViewBag.id)
-                {
-                    <button type="submit" id="add-@item.id" class="btn-add btn btn-default button">Add to friends</button>
-                }
-                else
-                {
-                    <button type="submit" id="delete-@item.id" class="btn-delete btn btn-default button">Unfollow </button>
-                }
-            }
-            @if (item.status == "followOut")
-            {
-                if (item.userThis.Id == ViewBag.id)
-                {    
-                    <button type="submit" id="delete-@item.id" class="btn-delete btn btn-default button">Unfollow </button>
-                }
-                else
-                {
-                    <button type="submit" id="add-@item.id" class="btn-add btn btn-default button">Add to friends</button>
-                }
-            }
+             @switch (item.Status) {
+                 case null: <button type="submit" id="follow-@item.Id" class="btn-follow btn btn-default button">Follow</button>
+                     break;
+                 case "friend":
+                     break;
+                 case "follow":
+                     break;
+                 case "followOut":
+                     break;
+                 default:
+                    <script type="text/javascript">
+                                             alert("Помилка при обробці запиту");
+                    </script>
+                     break;
 
-            @if (item.status == "unknown")
-            {
-                if (item.userThis.Id == ViewBag.id)
-                {
-                    <button type="submit" id="follow-@item.id" class="btn-follow btn btn-default button">Follow</button>
-                }
-                else
-                {
-                    <button type="submit" id="followIn-@item.id" class="btn-followIn btn btn-default button">Follow</button>
-                }
-            }
+             }        
+
         </div>
     </div>
     <div class="col-md-1"></div>
 </div>  
 }
+
+
+@*@foreach (var item in Model)
+             {
+
+    <div>
+        <div class="col-md-2"></div>
+        <div class="col-md-9 friend" id="@item.id">
+            <div class="col-md-8">
+                @if (item.userThis.Id == ViewBag.id)
+             {
+                    <h3>@item.userAnother.firstName @item.userAnother.lastName</h3>
+                    <h4>@item.userAnother.Email</h4>
+                }
+                else
+                {
+                    <h3>@item.userThis.firstName @item.userThis.lastName</h3>
+                    <h4>@item.userThis.Email</h4>
+                }
+            </div>
+            <div class="col-md-2">
+                @if (item.status == "friend")
+             {
+                    <button type="submit" id="delete-@item.id" class="btn-delete btn btn-default button">Delete friend</button>
+                }
+                @if (item.status == "followIn")
+             {
+                 if (item.userThis.Id == ViewBag.id)
+                 {
+                        <button type="submit" id="add-@item.id" class="btn-add btn btn-default button">Add to friends</button>
+                    }
+                    else
+                    {
+                        <button type="submit" id="delete-@item.id" class="btn-delete btn btn-default button">Unfollow </button>
+                    }
+                }
+                @if (item.status == "followOut")
+             {
+                 if (item.userThis.Id == ViewBag.id)
+                 {
+                        <button type="submit" id="delete-@item.id" class="btn-delete btn btn-default button">Unfollow </button>
+                    }
+                    else
+                    {
+                        <button type="submit" id="add-@item.id" class="btn-add btn btn-default button">Add to friends</button>
+                    }
+                }
+
+                @if (item.status == "unknown")
+             {
+                 if (item.userThis.Id == ViewBag.id)
+                 {
+                        <button type="submit" id="follow-@item.id" class="btn-follow btn btn-default button">Follow</button>
+                    }
+                    else
+                    {
+                        <button type="submit" id="followIn-@item.id" class="btn-followIn btn btn-default button">Follow</button>
+                    }
+                }
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+}*@

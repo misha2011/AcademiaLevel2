@@ -35,7 +35,7 @@
 .room-comment{
     margin-top:10px;
     margin-left:50px;
-    width:680px;
+    width:700px;
     height:180px;
     background-color:white;
     border-radius: 4px;
@@ -80,7 +80,8 @@
     font-size: 16px;
 }
 .button-edit { 
-    margin-left:400px;
+     float:right;  
+    margin-right:40px;
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -91,8 +92,9 @@
     font-size: 16px;
 }
 .button-del {
-    float:right;  
-    margin-right:10px;
+    float:right;
+    margin-top:30px;  
+    margin-right:-85px;
     background-color: #4CAF50;
     border: none;
     color: white;
@@ -109,6 +111,7 @@
     float:left;
 }
 .text-date{
+    margin-top:30px;
     font-size:15px;
     margin-left:20px;
     line-height:0.3;

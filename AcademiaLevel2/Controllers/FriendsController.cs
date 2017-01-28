@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AcademiaLevel2.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AcademiaLevel2.Controllers
 {
@@ -19,12 +20,31 @@ namespace AcademiaLevel2.Controllers
         public void Update (int id, string status)
         {
             Friends friend = new Friends();
-            friend.id = id;
+            //friend.id = id;
             friend.status = status;
             if (ModelState.IsValid)
             {
                 db.Entry(friend).State = EntityState.Modified;
                 db.SaveChanges();
+            }
+        }
+
+        // POST: Friends/Create      
+        [HttpPost]      
+        public void Create(string userAnother_id)
+        {
+            Friends friends = new Friends();
+            friends.idFriends = "23";
+            friends.status = "follow";
+            var userThis_id = User.Identity.GetUserId();
+            friends.userThis = db.Users.FirstOrDefault(x => x.Id == userThis_id);
+            friends.userAnother = db.Users.FirstOrDefault(x => x.Id == userAnother_id);
+            if (ModelState.IsValid)
+            {
+                db.Friends.Add(friends);
+                db.SaveChanges();
+               // int id = friends.id;
+                var r = 0;
             }
         }
 
@@ -53,24 +73,7 @@ namespace AcademiaLevel2.Controllers
         public ActionResult Create()
         {
             return View();
-        }
-
-        // POST: Friends/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,status")] Friends friends)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Friends.Add(friends);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(friends);
-        }
+        }        
 
         // GET: Friends/Edit/5
         public ActionResult Edit(int? id)
