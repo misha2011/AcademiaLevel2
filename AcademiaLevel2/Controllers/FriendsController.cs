@@ -17,10 +17,10 @@ namespace AcademiaLevel2.Controllers
 
         //POST: Friends/Update
         [HttpPost]
-        public void Update (int id, string status)
+        public void Update (string idFrend, string status)
         {
             Friends friend = new Friends();
-            //friend.id = id;
+            friend.idFriends = idFrend;
             friend.status = status;
             if (ModelState.IsValid)
             {
@@ -31,11 +31,22 @@ namespace AcademiaLevel2.Controllers
 
         // POST: Friends/Create      
         [HttpPost]      
-        public void Create(string userAnother_id)
+        public string Create(string userAnother_id)
         {
+            var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+            var stringChars = new char[30];
+            var random = new Random();
+
+            for (int i = 0; i < stringChars.Length; i++)
+            {
+                stringChars[i] = chars[random.Next(chars.Length)];
+            }
+
+            var finalString = new String(stringChars);
+
             Friends friends = new Friends();
-            friends.idFriends = "23";
             friends.status = "follow";
+            friends.idFriends = finalString;
             var userThis_id = User.Identity.GetUserId();
             friends.userThis = db.Users.FirstOrDefault(x => x.Id == userThis_id);
             friends.userAnother = db.Users.FirstOrDefault(x => x.Id == userAnother_id);
@@ -43,93 +54,21 @@ namespace AcademiaLevel2.Controllers
             {
                 db.Friends.Add(friends);
                 db.SaveChanges();
-               // int id = friends.id;
-                var r = 0;
             }
-        }
-
-        // GET: Friends
-        public ActionResult Index()
-        {
-            return View(db.Friends.ToList());
-        }
-
-        // GET: Friends/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Friends friends = db.Friends.Find(id);
-            if (friends == null)
-            {
-                return HttpNotFound();
-            }
-            return View(friends);
-        }
-
-        // GET: Friends/Create
-        public ActionResult Create()
-        {
-            return View();
-        }        
-
-        // GET: Friends/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Friends friends = db.Friends.Find(id);
-            if (friends == null)
-            {
-                return HttpNotFound();
-            }
-            return View(friends);
-        }
-
-        // POST: Friends/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,status")] Friends friends)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(friends).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(friends);
-        }
-
-        // GET: Friends/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Friends friends = db.Friends.Find(id);
-            if (friends == null)
-            {
-                return HttpNotFound();
-            }
-            return View(friends);
+            return finalString;
         }
 
         // POST: Friends/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]        
+        public string Delete(string idFriend)
         {
-            Friends friends = db.Friends.Find(id);
+            List<Friends> friend = db.Friends.Where(v => v.idFriends == idFriend)
+                .Include(u => u.userAnother).ToList();
+            Friends friends = friend.ElementAt(0);
+            var userAnother_id = friends.userAnother.Id;
             db.Friends.Remove(friends);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return userAnother_id;
         }
 
         protected override void Dispose(bool disposing)

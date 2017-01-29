@@ -215,6 +215,22 @@
     <Compile Include="Migrations\201701272115379_save.Designer.cs">
       <DependentUpon>201701272115379_save.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201701280853463_drop.cs" />
+    <Compile Include="Migrations\201701280853463_drop.Designer.cs">
+      <DependentUpon>201701280853463_drop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701280905247_addTableFriendsNew.cs" />
+    <Compile Include="Migrations\201701280905247_addTableFriendsNew.Designer.cs">
+      <DependentUpon>201701280905247_addTableFriendsNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701281003174_addToFriendsAutoIncr.cs" />
+    <Compile Include="Migrations\201701281003174_addToFriendsAutoIncr.Designer.cs">
+      <DependentUpon>201701281003174_addToFriendsAutoIncr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701281050400_addToFriendsAutoIncr2.cs" />
+    <Compile Include="Migrations\201701281050400_addToFriendsAutoIncr2.Designer.cs">
+      <DependentUpon>201701281050400_addToFriendsAutoIncr2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Friends.cs" />
@@ -1114,6 +1130,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701272115379_save.resx">
       <DependentUpon>201701272115379_save.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701280853463_drop.resx">
+      <DependentUpon>201701280853463_drop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701280905247_addTableFriendsNew.resx">
+      <DependentUpon>201701280905247_addTableFriendsNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281003174_addToFriendsAutoIncr.resx">
+      <DependentUpon>201701281003174_addToFriendsAutoIncr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701281050400_addToFriendsAutoIncr2.resx">
+      <DependentUpon>201701281050400_addToFriendsAutoIncr2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
@@ -8,8 +10,8 @@ using System.Web;
 namespace AcademiaLevel2.Models
 {
     public class Friends
-    {
-        public int id { get; set; }
+    {        
+        [Key]
         public string idFriends { get; set; }
         public string status { get; set; }
         public ApplicationUser userThis { get; set; }
