@@ -22,7 +22,7 @@
         test = test.replace("delete-", "");
         var post =
        {
-           Id: parseInt(test),
+           postId: parseInt(test),
        };
         $.ajax(
          {

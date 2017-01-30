@@ -8,8 +8,7 @@
 
         factory.getpostResults = function () {
             if (!factory.noResults)
-                return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {
-                    console.log(data.data);                   
+                return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {                                    
                     if (data.data.length === 0) {
                         factory.noResults = true;
                         return;
@@ -25,17 +24,15 @@
         };
 
         factory.deletePost = function (Id) {
-            console.log(Id);
-            return $http.post("/Posts/Delete", { postId: Id }).then(function (data) {
+            return $http.post("/Posts/DeleteConfirmed", { postId: Id }).then(function (data) {
                 $('#' + Id).detach();
-
             });
         };
 
-        factory.editPost = function (Id) {
-            console.log(Id);
-            return $http.post("/Posts/Edit", { postId: Id, postTitle: Title, postContent: Content }).then(function (data) {
-
+        factory.editPost = function (post) {
+            return $http.post("/Posts/Edit", { Post: post }).then(function () {
+                $('#title-' + post.Id).text(post.Title);
+                $('#description-' + post.Id).text(post.Description);
             });
         };
 

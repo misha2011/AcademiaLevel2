@@ -1,36 +1,38 @@
 ﻿<br />
+
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">EDIT POST</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>Title:</label>
+            <input type="text" ng-model="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea type="text" ng-model="description" class="form-control"></textarea>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="vm.ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</script>
+
 <div ng-repeat="post in $ctrl.servis.postResults"> 
     <div id="{{post.Id}}" class="room-comment">
         <br />
         <p class="text-name"> {{post.IdUser.firstName}} {{post.IdUser.lastName}} </p>
-        <button type="submit" id="edit-@item.Id" class="button-edit btn btn-success button">Edit</button>
+        <button  ng-click="$ctrl.open(post.Id)" class="button-edit btn btn-success button">Edit</button>
         <h6></h6>
-        <button type="submit" id="delete-@item.Id" class="button-del btn btn-success button">Delete</button>
+        <button ng-click="$ctrl.deleteResults(post.Id)" class="button-del btn btn-success button">Delete</button>
         <p class="text-date"> {{post.Date | date:'dd/MM/yyyy'}} </p>
-        <center id="title-@item.Id" class="text-title">{{post.Title}}</center>
+        <center id="title-{{post.Id}}" class="text-title">{{post.Title}}</center>
         <br />
-        <p id="description-@item.Id" class="text-name">{{post.Description}}</p>
+        <p id="description-{{post.Id}}" class="text-name">{{post.Description}}</p>
     </div>
 </div>
 <br />
 <post-loader></post-loader>
 
-
-
-
-<!--<div ng-repeat="p in $ctrl.servis.postResults">
-    <div class="well post" id="{{p.Id}}">
-        <h5>
-            {{p.ApplicationUserId.FirstName}} {{p.ApplicationUserId.LastName}}
-            <span class="pull-right">
-                <button ng-click="$ctrl.open()" class="btn btn-primary">Редагувати</button>
-                <button ng-click="$ctrl.deleteResults(p.Id)" class="btn btn-primary">Видалити</button>
-            </span>
-        </h5>
-        <h6>  <span class="text-left">{{p.Time | date:'medium'}} </span> </h6>
-        <div class="text-center"><h3><strong>{{p.Title}}</strong></h3></div>
-        <h6>{{p.Content}}</h6>
-
-    </div>
-    <post-loader></post-loader>
-</div>-->

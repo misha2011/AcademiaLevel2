@@ -1,7 +1,9 @@
 ﻿angular.module('app', [
     'postApp',
     'post.service',
-    'post.directives'
+    'post.directives',
+    'ngAnimate', 
+    'ui.bootstrap'
 ])
 
 

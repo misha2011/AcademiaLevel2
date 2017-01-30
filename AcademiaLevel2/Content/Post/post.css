@@ -121,3 +121,6 @@
     line-height:1;
     margin-left:20px;
 }
+.modal-sm {
+    width: 400px;
+}

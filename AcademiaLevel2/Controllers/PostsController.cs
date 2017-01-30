@@ -48,13 +48,7 @@ namespace AcademiaLevel2.Controllers
             var Post = db.Post.Where(v => v.IdUser.Id == id)
                 .Include(u => u.IdUser);
             return View(Post);
-        }     
-        public JsonResult Test()
-        { 
-            var results = db.Post.Include(u => u.IdUser).ToList();
-
-            return new JsonResult() { Data = results, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
+        }  
 
         [HttpPost]
         public JsonResult GetPost(int index = 0, int count = 10)
@@ -83,61 +77,43 @@ namespace AcademiaLevel2.Controllers
             }
             return PartialView("PartialView", Post);
         }
-
-        // GET: Post/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post Post = db.Post.Find(id);
-            if (Post == null)
-            {
-                return HttpNotFound();
-            }
-            return View(Post);
-        }
-
+     
         // POST: Post/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
 
-        public ActionResult Edit(Post Post)
+        public void Edit(Post Post)
         {
             Post.Date = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(Post).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Create");
             }
-            return View(Post);
         }
 
         // GET: Post/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Post Post = db.Post.Find(id);
-            if (Post == null)
-            {
-                return HttpNotFound();
-            }
-            return View(Post);
-        }
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Post Post = db.Post.Find(id);
+        //    if (Post == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(Post);
+        //}
 
         // POST: Post/Delete/5
         [HttpPost]
-        // [ValidateAntiForgeryToken]
-        public void DeleteConfirmed(int Id)
+        public void DeleteConfirmed(int postId)
         {
-            Post Post = db.Post.FirstOrDefault(x => x.Id == Id);
+            Post Post = db.Post.FirstOrDefault(x => x.Id == postId);
             db.Post.Remove(Post);
             db.SaveChanges();
         }

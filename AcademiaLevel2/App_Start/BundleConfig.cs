@@ -53,8 +53,8 @@ namespace AcademiaLevel2
                         "~/Scripts/ng-file-upload-all.min.js",
                         "~/Scripts/ng-file-upload.min.js",
                         "~/Scripts/freewall.js",
-                        "~/Scripts/angulargrid.min.js"
-
+                        "~/Scripts/angulargrid.min.js",
+                        "~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/Scripts/angular-app").Include(
