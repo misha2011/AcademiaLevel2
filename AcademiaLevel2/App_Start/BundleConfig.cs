@@ -63,7 +63,7 @@ namespace AcademiaLevel2
                         "~/Scripts/Post/postComponent.js",
                          "~/Scripts/Post/postService.js",
                         "~/Scripts/Post/postLoader.js",                        
-                        "~/Scripts/Post/postEditor.js"
+                        "~/Scripts/Post/postLike.js"
                       ));
 
         }

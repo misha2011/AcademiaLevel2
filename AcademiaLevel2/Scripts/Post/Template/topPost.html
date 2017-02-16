@@ -31,7 +31,14 @@
         <center id="title-{{post.Id}}" class="text-title">{{post.Title}}</center>
         <br />
         <p id="description-{{post.Id}}" class="text-name">{{post.Description}}</p>
-    </div>
+        <br />
+        <br />
+        <post-like id="{{post.Id}}" ng-init="isLike=post.isLike;count = post.likes.length" ng-click="function()">
+            <p ng-show="isLike" class="glyphicon glyphicon-heart" style="color:red"></p>
+            <p ng-show="!isLike" class="glyphicon glyphicon-heart-empty"></p>
+            {{count}}
+        </post-like>
+    </div>   
 </div>
 <br />
 <post-loader></post-loader>

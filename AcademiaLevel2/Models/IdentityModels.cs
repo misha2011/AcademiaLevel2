@@ -37,6 +37,8 @@ namespace AcademiaLevel2.Models
         }
         public DbSet<Friends> Friends { get; set; }
         public DbSet<Post> Post{ get; set; }
+        public DbSet<Likes> Likes{ get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

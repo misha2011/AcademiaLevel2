@@ -52,6 +52,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -231,11 +232,20 @@
     <Compile Include="Migrations\201701281050400_addToFriendsAutoIncr2.Designer.cs">
       <DependentUpon>201701281050400_addToFriendsAutoIncr2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702151801061_еуіе.cs" />
+    <Compile Include="Migrations\201702151801061_еуіе.Designer.cs">
+      <DependentUpon>201702151801061_еуіе.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702151917111_likesTEst.cs" />
+    <Compile Include="Migrations\201702151917111_likesTEst.Designer.cs">
+      <DependentUpon>201702151917111_likesTEst.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Friends.cs" />
     <Compile Include="Models\FriendView.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Likes.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1039,8 +1049,8 @@
     <Content Include="Scripts\post.js" />
     <Content Include="Scripts\Post\popup.js" />
     <Content Include="Scripts\Post\postComponent.js" />
-    <Content Include="Scripts\Post\postEditor.js" />
     <Content Include="Scripts\Post\app.js" />
+    <Content Include="Scripts\Post\postLike.js" />
     <Content Include="Scripts\Post\postLoader.js" />
     <Content Include="Scripts\Post\postService.js" />
     <Content Include="Scripts\Post\Template\editPost.html" />
@@ -1147,6 +1157,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201701281050400_addToFriendsAutoIncr2.resx">
       <DependentUpon>201701281050400_addToFriendsAutoIncr2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702151801061_еуіе.resx">
+      <DependentUpon>201702151801061_еуіе.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702151917111_likesTEst.resx">
+      <DependentUpon>201702151917111_likesTEst.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

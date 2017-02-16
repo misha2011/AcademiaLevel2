@@ -2,6 +2,7 @@
     'postApp',
     'post.service',
     'post.directives',
+    'post.directiveLike',
     'ngAnimate', 
     'ui.bootstrap'
 ])

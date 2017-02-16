@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -12,5 +13,9 @@ namespace AcademiaLevel2.Models
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public ApplicationUser IdUser { get; set; }
+
+        public virtual ICollection<Likes> likes { get; set; }
+        [NotMapped]
+        public virtual bool isLike { get; set; }
     }
 }

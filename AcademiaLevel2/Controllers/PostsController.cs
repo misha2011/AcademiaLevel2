@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using AcademiaLevel2.Models;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
+using System.Reflection.Emit;
 
 namespace AcademiaLevel2.Controllers
 {
@@ -48,16 +49,55 @@ namespace AcademiaLevel2.Controllers
             var Post = db.Post.Where(v => v.IdUser.Id == id)
                 .Include(u => u.IdUser);
             return View(Post);
-        }  
+        }
+
+      
 
         [HttpPost]
         public JsonResult GetPost(int index = 0, int count = 10)
-        {           
-            var data = db.Post.Include(p => p.IdUser)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            var data = db.Post.Include(p => p.IdUser).Include(p => p.likes)
                 .OrderByDescending(p => p.Date).ToList()
                .Skip(index * count)
                .Take(count).ToList();
+
+            foreach (var post in data)
+            {
+                foreach (var Likes in post.likes)
+                {
+                    if (Likes.iduser.Id == currentUserId)
+                    {
+                        post.isLike = true;
+                    }
+                };
+
+            };
             return new JsonResult() { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+
+        // GET: Post/CreatуLikes create Likes
+        public void CreateLike(int idPost)
+        {
+            var currentUserId = User.Identity.GetUserId();
+            Likes like = new Likes();
+            like.iduser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+            like.idPost = idPost;
+            if (ModelState.IsValid)
+            {
+                db.Likes.Add(like);
+                db.SaveChanges();
+            }
+
+        }
+
+        // GET: Post/CreatуLikes create Likes
+        public void DeleteLike(int idPost)
+        {
+            Post Post = db.Post.FirstOrDefault(x => x.Id == idPost);
+            db.Post.Remove(Post);
+            db.SaveChanges();
+
         }
 
         // POST: Post/Create

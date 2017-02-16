@@ -9,9 +9,8 @@
         factory.getpostResults = function () {
             if (!factory.noResults)
                 return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {                                    
-                    if (data.data.length === 0) {
-                        factory.noResults = true;
-                        return;
+                    if (data.data.length < 10) {
+                        factory.noResults = true;                        
                     }
                     data.data.forEach(function (elem, index, array) {
                         var date = elem.Date;
@@ -36,9 +35,20 @@
             });
         };
 
+        factory.createLike = function (idPost) {
+            return $http.post("/Posts/CreateLike", { idPost: idPost }).then(function (data) {
+                console.log("Likenuto");
+            });
+        };
+
+        factory.deleteLike = function (idPost) {
+            return $http.post("/Posts/DeleteLike", { idPost: idPost }).then(function (data) {
+                console.log("Likenuto");
+            });
+        };
+
         return factory;
     }
-
 
     postService.$inject = ['$http'];
     angular.module('post.service', [])
