@@ -9,6 +9,7 @@ using AcademiaLevel2.Models;
 using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System.Reflection.Emit;
+using Microsoft.Ajax.Utilities;
 
 namespace AcademiaLevel2.Controllers
 {
@@ -71,15 +72,18 @@ namespace AcademiaLevel2.Controllers
                         post.isLike = true;
                     }
                 };
-
             };
             return new JsonResult() { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         // GET: Post/CreatуLikes create Likes
-        public void CreateLike(int idPost)
+         public void CreateLike(int idPost,string currentUserId)
         {
-            var currentUserId = User.Identity.GetUserId();
+            Likes likeIs = db.Likes.FirstOrDefault(x => x.idPost == idPost && x.iduser.Id == currentUserId);
+            if (likeIs != null)
+            {
+                return;
+            }
             Likes like = new Likes();
             like.iduser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
             like.idPost = idPost;
@@ -92,12 +96,15 @@ namespace AcademiaLevel2.Controllers
         }
 
         // GET: Post/CreatуLikes create Likes
-        public void DeleteLike(int idPost)
+        public void DeleteLike(int idPost, string currentUserId)
         {
-            Post Post = db.Post.FirstOrDefault(x => x.Id == idPost);
-            db.Post.Remove(Post);
-            db.SaveChanges();
-
+            Likes like = db.Likes.FirstOrDefault(x => x.idPost == idPost && x.iduser.Id == currentUserId);
+            if(like != null)
+            {
+                db.Likes.Remove(like);
+                db.SaveChanges();
+            }
+            
         }
 
         // POST: Post/Create

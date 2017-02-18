@@ -66,6 +66,12 @@ namespace AcademiaLevel2
                         "~/Scripts/Post/postLike.js"
                       ));
 
+            bundles.Add(new ScriptBundle("~/Scripts/signalR").Include(
+                       "~/Scripts/jquery-1.10.2.min.js",
+                       "~/Scripts/jquery.signalR-2.2.1.min.js",
+                       "~/Scripts/post/RealTime.js"
+                    ));
+
         }
     }
 }

@@ -7,9 +7,10 @@
         factory.postResults = [];
 
         factory.getpostResults = function () {
+            console.log("ehf");
             if (!factory.noResults)
                 return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {                                    
-                    if (data.data.length < 10) {
+                    if (data.data.length === 0) {
                         factory.noResults = true;                        
                     }
                     data.data.forEach(function (elem, index, array) {

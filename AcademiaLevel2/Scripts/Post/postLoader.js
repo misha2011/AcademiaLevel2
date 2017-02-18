@@ -1,11 +1,11 @@
-﻿(function () {
+﻿(function () {    
     'use strict'; 
     function postLoader(postService) {
-        return {
+        return {           
             restrict: 'AE',
             scope: true,
             link: function (element, attrs, ngModel) {
-                window.onscroll = function () {
+                window.onscroll = function () {                    
                     if (!postService.noResults) {
                         if ($(window).scrollTop() + $(window).height() == $(document).height()) {
                             postService.skipPost += 1;

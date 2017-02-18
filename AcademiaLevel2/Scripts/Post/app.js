@@ -3,6 +3,7 @@
     'post.service',
     'post.directives',
     'post.directiveLike',
+    'RealTime',
     'ngAnimate', 
     'ui.bootstrap'
 ])

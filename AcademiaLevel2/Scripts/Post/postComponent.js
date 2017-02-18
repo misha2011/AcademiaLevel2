@@ -1,16 +1,55 @@
 ﻿(function () {
     'use strict';
-    function postController(postService, $scope, $uibModal) {
+    function postController(postService, $scope, $uibModal, realtimeService) {
         var vm = this;
+        
+        realtimeService.on("like", function (data) {
+            postService.postResults.forEach(function (item, i) {
+                if (item.Id===data) {
+                    item.likes.length += 1;
+                }
+            });
+        });
+        realtimeService.on("disLike", function (data) {
+            postService.postResults.forEach(function (item, i) {
+                if (item.Id === data) {
+                    item.likes.length -= 1;
+                }
+            });
+        });
+        realtimeService.on("isLike", function (data) {
+            console.log(postService.postResults);
+            postService.postResults.forEach(function (item, i) {
+            if (item.Id === data) {
+                    item.isLike = true;
+                }
+            });
+        });
+        realtimeService.on("notLike", function (data) {
+            console.log(postService.postResults);
+            postService.postResults.forEach(function (item, i) {
+                if (item.Id === data) {
+                    item.isLike = false;
+                }
+            });
+        });
+
+        vm.like = function (idPost) {
+            realtimeService.invoke("Like", idPost);
+        };
+        vm.disLike = function (idPost) {
+            realtimeService.invoke("disLike", idPost);
+        };
+
+
+
         vm.servis = postService;
         vm.getResults = function () {
             postService.getpostResults();
         };
         vm.deleteResults = function (Id) {
             postService.deletePost(Id);
-        };
-        
-        
+        };        
         vm.animationsEnabled = true;
         vm.open = function (Id) {
             vm.postOld = {
@@ -41,7 +80,7 @@
         vm.getResults();
     }
    
-    postController.$inject = ['postService', '$scope', '$uibModal'];
+    postController.$inject = ['postService', '$scope', '$uibModal', 'realtimeService'];
    
     angular
         .module('postApp', [])
