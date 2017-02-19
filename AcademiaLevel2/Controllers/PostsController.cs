@@ -67,7 +67,7 @@ namespace AcademiaLevel2.Controllers
             {
                 foreach (var Likes in post.likes)
                 {
-                    if (Likes.iduser.Id == currentUserId)
+                    if (Likes.iduser == currentUserId)
                     {
                         post.isLike = true;
                     }
@@ -79,13 +79,13 @@ namespace AcademiaLevel2.Controllers
         // GET: Post/CreatуLikes create Likes
          public void CreateLike(int idPost,string currentUserId)
         {
-            Likes likeIs = db.Likes.FirstOrDefault(x => x.idPost == idPost && x.iduser.Id == currentUserId);
+            Likes likeIs = db.Likes.FirstOrDefault(x => x.idPost == idPost && x.iduser == currentUserId);
             if (likeIs != null)
             {
                 return;
             }
             Likes like = new Likes();
-            like.iduser = db.Users.FirstOrDefault(x => x.Id == currentUserId);
+            like.iduser = currentUserId;
             like.idPost = idPost;
             if (ModelState.IsValid)
             {
@@ -98,7 +98,7 @@ namespace AcademiaLevel2.Controllers
         // GET: Post/CreatуLikes create Likes
         public void DeleteLike(int idPost, string currentUserId)
         {
-            Likes like = db.Likes.FirstOrDefault(x => x.idPost == idPost && x.iduser.Id == currentUserId);
+            Likes like = db.Likes.FirstOrDefault(x => x.idPost == idPost && x.iduser == currentUserId);
             if(like != null)
             {
                 db.Likes.Remove(like);

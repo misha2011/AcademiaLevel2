@@ -8,7 +8,7 @@ namespace AcademiaLevel2.Models
     public class Likes
     {
         public int id { get; set; }       
-        public ApplicationUser iduser { get; set; }
+        public string iduser { get; set; }
         public int idPost { get; set; }
 
         [ForeignKey("idPost")]
