@@ -7,11 +7,11 @@
         factory.postResults = [];
 
         factory.getpostResults = function () {
-            console.log("ehf");
             if (!factory.noResults)
                 return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {                                    
                     if (data.data.length === 0) {
-                        factory.noResults = true;                        
+                        factory.noResults = true;
+                        return;
                     }
                     data.data.forEach(function (elem, index, array) {
                         var date = elem.Date;

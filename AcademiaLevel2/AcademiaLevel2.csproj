@@ -265,6 +265,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Frends\frends.css" />
+    <Content Include="Content\Post\notification.css" />
     <Content Include="Content\Post\post.css" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
@@ -1062,7 +1063,7 @@
     <Content Include="Scripts\Post\popup.js" />
     <Content Include="Scripts\Post\postComponent.js" />
     <Content Include="Scripts\Post\app.js" />
-    <Content Include="Scripts\Post\postLike.js" />
+    <Content Include="Scripts\Post\notificationController.js" />
     <Content Include="Scripts\Post\postLoader.js" />
     <Content Include="Scripts\Post\postService.js" />
     <Content Include="Scripts\Post\RealTime.js" />

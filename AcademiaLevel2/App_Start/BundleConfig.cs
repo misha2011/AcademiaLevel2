@@ -34,7 +34,8 @@ namespace AcademiaLevel2
                "~/Scripts/jquery-1.10.2.min.js",
                "~/Scripts/Friends.js"));
             bundles.Add(new StyleBundle("~/Content/Post/css").Include(
-                    "~/Content/Post/post.css"
+                    "~/Content/Post/post.css",
+                    "~/Content/Post/notification.css"
                     ));
             bundles.Add(new ScriptBundle("~/Scripts/post").Include(
                "~/Scripts/jquery-1.10.2.min.js",
@@ -62,8 +63,8 @@ namespace AcademiaLevel2
                         "~/Scripts/Post/postApp.js",
                         "~/Scripts/Post/postComponent.js",
                          "~/Scripts/Post/postService.js",
-                        "~/Scripts/Post/postLoader.js",                        
-                        "~/Scripts/Post/postLike.js"
+                        "~/Scripts/Post/postLoader.js",
+                        "~/Scripts/Post/notificationController.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/Scripts/signalR").Include(

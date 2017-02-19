@@ -18,7 +18,6 @@
             });
         });
         realtimeService.on("isLike", function (data) {
-            console.log(postService.postResults);
             postService.postResults.forEach(function (item, i) {
             if (item.Id === data) {
                     item.isLike = true;
@@ -26,7 +25,6 @@
             });
         });
         realtimeService.on("notLike", function (data) {
-            console.log(postService.postResults);
             postService.postResults.forEach(function (item, i) {
                 if (item.Id === data) {
                     item.isLike = false;

@@ -24,12 +24,23 @@ namespace SignalRMvc.Hubs
         {
            
             PostsController post = new PostsController();
+            Notification notif = new Notification();
+            notif.idPost = idPost;
+            notif.userName = Context.User.Identity.GetUserName(); 
+
             var currentUserId =  Context.User.Identity.GetUserId();
             post.CreateLike(idPost, currentUserId);
+
             Clients.Client(Context.ConnectionId).isLike(idPost);
             Clients.Group("online").Like(idPost);
+            Clients.Group("online", Context.ConnectionId).updateNotification(notif);
             //Clients.All.Like(idPost);
         }
+        public struct Notification
+        {
+            public int idPost;
+            public string userName;
+        };
         public void DisLike(int idPost)
         {
             PostsController post = new PostsController();
