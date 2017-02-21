@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using System.Web.Script.Serialization;
 using System.Reflection.Emit;
 using Microsoft.Ajax.Utilities;
+using System.Collections.Generic;
 
 namespace AcademiaLevel2.Controllers
 {
@@ -55,17 +56,21 @@ namespace AcademiaLevel2.Controllers
       
 
         [HttpPost]
-        public JsonResult GetPost(int index = 0, int count = 10)
+        public JsonResult GetPost(int index = 0, int count = 10, int newPost = 0)
         {
             var currentUserId = User.Identity.GetUserId();
             var data = db.Post.Include(p => p.IdUser).Include(p => p.likes)
                 .OrderByDescending(p => p.Date).ToList()
-               .Skip(index * count)
+               .Skip(index * count + newPost)
                .Take(count).ToList();
 
             foreach (var post in data)
             {
-                foreach (var Likes in post.likes)
+                if (post.IdUser.Id == currentUserId)
+                {
+                    post.myPost = true;
+                }
+             foreach (var Likes in post.likes)
                 {
                     if (Likes.iduser == currentUserId)
                     {
@@ -112,17 +117,20 @@ namespace AcademiaLevel2.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]        
-        public ActionResult Create(Post Post)
+        public JsonResult Create(Post post)
         {
             var id = User.Identity.GetUserId();
-            Post.IdUser = db.Users.FirstOrDefault(x => x.Id == id);
-            Post.Date = DateTime.Now;
-            if (ModelState.IsValid)
+            post.IdUser = db.Users.FirstOrDefault(x => x.Id == id);
+            post.Date = DateTime.Now;
+            List<Likes> like = new List<Likes>();
+            post.likes = like;
+            post.myPost = true;
+           if (ModelState.IsValid)
             {
-                db.Post.Add(Post);
+                db.Post.Add(post);
                 db.SaveChanges();
             }
-            return PartialView("PartialView", Post);
+        return new JsonResult() { Data = post, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
      
         // POST: Post/Edit/5
@@ -133,12 +141,21 @@ namespace AcademiaLevel2.Controllers
 
         public void Edit(Post Post)
         {
-            Post.Date = DateTime.Now;
-            if (ModelState.IsValid)
-            {
-                db.Entry(Post).State = EntityState.Modified;
-                db.SaveChanges();
-            }
+            //Post post = db.Post.Include(p => p.IdUser).FirstOrDefault(x => x.Id == Post.Id);
+            //var id = User.Identity.GetUserId();
+            //if (post.IdUser.Id != id)
+            //{
+            //    return;
+            //}
+
+                Post.Date = DateTime.Now;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(Post).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+            
+                
         }
 
         // GET: Post/Delete/5
@@ -160,9 +177,14 @@ namespace AcademiaLevel2.Controllers
         [HttpPost]
         public void DeleteConfirmed(int postId)
         {
-            Post Post = db.Post.FirstOrDefault(x => x.Id == postId);
-            db.Post.Remove(Post);
-            db.SaveChanges();
+            Post post = db.Post.Include(p => p.IdUser).FirstOrDefault(x => x.Id == postId);
+            var id = User.Identity.GetUserId();
+            if (post.IdUser.Id == id)
+            {
+                db.Post.Remove(post);
+                db.SaveChanges();
+            };
+            
         }
 
         protected override void Dispose(bool disposing)

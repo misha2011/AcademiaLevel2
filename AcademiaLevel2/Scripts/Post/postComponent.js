@@ -2,7 +2,24 @@
     'use strict';
     function postController(postService, $scope, $uibModal, realtimeService) {
         var vm = this;
-        
+
+        vm.send = function () {
+            vm.post = {
+                title : $scope.inputTitle,
+                description : $scope.inputDescription
+            };
+            var regex = /^[ a-zA-Z0-9@]+$/;            
+            if (vm.post.title == null || vm.post.description == null || regex.test(vm.post.title) !== true || regex.test(vm.post.description) !== true) {
+                alert("complete the form");
+               
+            } else {
+                postService.postSend(vm.post);
+                postService.newPost += 1;
+                $scope.inputTitle = null;
+                $scope.inputDescription = null;
+            };
+           
+        };
         realtimeService.on("like", function (data) {
             postService.postResults.forEach(function (item, i) {
                 if (item.Id===data) {
@@ -47,6 +64,7 @@
         };
         vm.deleteResults = function (Id) {
             postService.deletePost(Id);
+            postService.newPost -= 1;
         };        
         vm.animationsEnabled = true;
         vm.open = function (Id) {
@@ -103,8 +121,14 @@ angular.module('postApp').controller('ModalInstanceCtrl', function ($uibModalIns
             Title: $scope.title,
             Description: $scope.description
         };
-        postService.editPost(vm.post);
-        $uibModalInstance.close();
+        var regex = /^[ a-zA-Z0-9@]+$/;            
+        if (vm.post.Title == null || vm.post.Description == null || regex.test(vm.post.Title) !== true || regex.test(vm.post.Description) !== true) {
+            alert("complete the form");
+
+        } else {
+            postService.editPost(vm.post);
+            $uibModalInstance.close();
+        }
     };
 
     vm.cancel = function () {

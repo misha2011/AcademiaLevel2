@@ -17,5 +17,7 @@ namespace AcademiaLevel2.Models
         public virtual ICollection<Likes> likes { get; set; }
         [NotMapped]
         public virtual bool isLike { get; set; }
+        [NotMapped]
+        public virtual bool myPost { get; set; }
     }
 }

@@ -1,5 +1,5 @@
-﻿<br />
-
+﻿
+<!-- popup -->
 <script type="text/ng-template" id="myModalContent.html">
     <div class="modal-header">
         <h3 class="modal-title">EDIT POST</h3>
@@ -7,7 +7,7 @@
     <div class="modal-body">
         <div class="form-group">
             <label>Title:</label>
-            <input type="text" ng-model="title" class="form-control">
+            <input maxlength="50" ng-model="title" class="form-control">
         </div>
         <div class="form-group">
             <label>Description:</label>
@@ -20,15 +20,29 @@
     </div>
 </script>
 
+<div class="room-add">
+    <div class="room-title">
+        <p class="title" maxlength="50">Title<p />
+        <input class="input-title" type="text" ng-model="inputTitle">
+    </div>
+    <div class="room-description">
+        <p class="title">Description<p />
+        <textarea class="input-description" ng-model="inputDescription"></textarea>
+        <button class="button-send" ng-click="$ctrl.send()">
+            Send
+        </button>
+    </div>
+</div>
+
 <div ng-repeat="post in $ctrl.servis.postResults"> 
    <div id="{{post.Id}}" class="room-comment">
         <br />
         <p class="text-name"> {{post.IdUser.firstName}} {{post.IdUser.lastName}} </p>
-        <button  ng-click="$ctrl.open(post.Id)" class="button-edit btn btn-success button">Edit</button>
-        <button ng-click="$ctrl.deleteResults(post.Id)" class="button-del btn btn-success button">Delete</button>
+        <button  ng-show="post.myPost" ng-click="$ctrl.open(post.Id)" class="button-edit btn btn-success button">Edit</button>
+        <button  ng-show="post.myPost" ng-click="$ctrl.deleteResults(post.Id)" class="button-del btn btn-success button">Delete</button>
         <p class="text-date"> {{post.Date | date:'dd/MM/yyyy'}} </p>
         <center id="title-{{post.Id}}" class="text-title">{{post.Title}}</center>
-        <textarea readonly id="description-{{post.Id}}" class="room-description">{{post.Description}}</textarea>
+        <textarea readonly id="description-{{post.Id}}" class="description">{{post.Description}}</textarea>
       
         <div class="like">
             <p ng-click="$ctrl.disLike(post.Id)" ng-show="post.isLike" class="glyphicon glyphicon-heart" style="color:red"></p>

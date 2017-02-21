@@ -4,14 +4,15 @@
         var factory = {};
         factory.noResults = false;
         factory.skipPost = 0;
+        factory.newPost = 0;
         factory.postResults = [];
 
         factory.getpostResults = function () {
             if (!factory.noResults)
-                return $http.post("/Posts/GetPost", { index: factory.skipPost, count: 10 }).then(function (data) {                                    
+                return $http.post("/Posts/GetPost", { index: factory.skipPost, count: factory.count, newPost: factory.newPost }).then(function (data) {
                     if (data.data.length === 0) {
                         factory.noResults = true;
-                        return;
+                       
                     }
                     data.data.forEach(function (elem, index, array) {
                         var date = elem.Date;
@@ -21,6 +22,14 @@
                     factory.postResults.push.apply(factory.postResults, data.data);
 
                 });
+        };
+
+        factory.postSend = function (post) {
+            return $http.post("/Posts/Create", { post: post }).then(function (data) {
+                console.log(data);
+                data.data.Date = data.data.Date.replace(/[A-z]/g, "").replace('/', "").replace("(", "").replace(")", "").replace('/', "");
+                factory.postResults.unshift(data.data);
+            });
         };
 
         factory.deletePost = function (Id) {
